@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <title>To do list</title>
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script>
+        var app = angular.module("myApp6", [])
+        app.controller("myCntrl", function ($scope) {
+            $scope.tasks = [
+                {
+                    "TITLE": "washing bike",
+                    "COMPLETED": false,
+                    "EDITING": false
+                },
+                    {
+                    "TITLE": "washing car",
+                    "COMPLETED": true,
+                    "EDITING": false
+                }
+            ];
+            $scope.addTask = function () {
+                if ($scope.newTask) {
+                    var t = {
+                        "TITLE": $scope.newTask,
+                        "COMPLETED": false,
+                        "EDITING": false
+                    }
+                    $scope.tasks.push(t)
+                    $scope.newTask = '';
+                }
+                else {
+                    alert("Please enter the task to be added")
+                }
+            }
+            $scope.editTask = function (task) {
+                task.EDITING = true;
+            }
+            $scope.turnOffEditing = function (task) {
+                task.EDITING = false;
+            }
+            $scope.deleteTask = function (task) {
+                var index = $scope.tasks.indexOf(task)
+                $scope.tasks.splice(index, 1)
+            }
+        });
+    </script>
+</head>
+<body ng-app="myApp6">
+    <div ng-controller="myCntrl">
+        <h2>To do list using Angular JS</h2>
+        Enter the task:<input type="text" ng-model="newTask">
+        <button ng-click="addTask()">ADD</button><br><br>
+        <table border="1">
+            <tr>
+                <th>Slno</th>
+                <th>Status</th>
+                <th>task</th>
+                <th>Edit</th>
+                <th>Remove</th>
+            </tr>
+            <tr ng-repeat="task in tasks">
+                <td>{{$index+1}}</td>
+                <td><input type="checkbox" ng-model="task.COMPLETED"></td>
+                <td><span ng-show="!task.EDITING">{{task.TITLE}}</span><input type="text" ng-show="task.EDITING"
+                        ng-model="task.TITLE" blur="turnOffEditing"></td>
+                <td><button ng-click="editTask(task)">Edit</button></td>
+                <td><button ng-click="deleteTask(task)">Delete</button></td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
