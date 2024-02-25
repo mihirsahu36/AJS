@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>Display the date in different formats</title>
+    <script src="angular.min.js"></script>
+</head>
+
+<body ng-app="DispDiffDateFormatsApp">
+    <h1>Display the date in different formats</h1>
+    <div ng-controller="DispDiffDateFormatsAppController">
+        The date and time now is : {{todayzDate}} <br />
+        Short date: {{todayzDate|date: 'short'}} <br />
+        Long date: {{todayzDate |date: 'fullDate'}} <br />
+        Medium date:{{todayzDate| date: 'medium'}}
+    </div>
+</body>
+
+</html>
+
+<script type="text/javascript">
+</script>
+<script>
+    let diffdatefmts = angular.module("DispDiffDateFormatsApp", []);
+    diffdatefmts.controller("DispDiffDateFormatsAppController", function ($scope) {
+        $scope.todayzDate = new Date();
+    });
+</script>
