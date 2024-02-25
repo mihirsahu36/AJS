@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Simple Calculator</title>
+        <script type="text/javascript" src="angular.min.js"></script>
+        <script>
+            var app=angular.module("myApp2",[])
+            app.controller("myCntrl",function($scope){
+                $scope.num1
+                $scope.num2
+                $scope.res
+                $scope.op="add"
+
+                $scope.compute=function(){
+                    if(document.getElementById("num1").value==""){
+                        alert("Please enter the first number")
+                        return false;
+                    }
+                    else if(document.getElementById("num2").value==""){
+                        alert("Please enter the second number")
+                        return false;
+                    }
+                    else if(document.getElementById("op").value==""){
+                        alert("Please enter the operator")
+                        return false;
+                    }
+                    else{
+                        switch($scope.op){
+                            case 'add':$scope.res=$scope.num1+$scope.num2
+                            break
+                            case 'sub':$scope.res=$scope.num1-$scope.num2
+                            break
+                            case 'mul':$scope.res=$scope.num1*$scope.num2
+                            break
+                            case 'div':if($scope.num2==0){
+                                alert("Divison by zero error");
+                            }
+                            else{
+                                $scope.res=$scope.num1/$scope.num2
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+    </head>
+    <body ng-app="myApp2">
+        <div ng-controller="myCntrl">
+            <h2>Simple Calculator using Angular JS</h2>
+            Enter first number: <input type="number" ng-model="num1" id="num1"><br>
+            Enter the operator: <select ng-model="op" id="op">
+                <option value="add">+</option>
+                <option value="sub">-</option>
+                <option value="mul">*</option>
+                <option value="div">/</option>
+            </select><br>
+            Enter second number: <input type="number" ng-model="num2" id="num2"><br>
+            <button ng-click="compute()">Compute</button><br>
+            Result: {{res}}
+        </div>
+    </body>
+</html>
