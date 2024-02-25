@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Student Details</title>
+        <script type="text/javascript" src="angular.min.js"></script>
+        <script>
+            var app=angular.module("myApp4",[])
+            app.controller("myCntrl",function($scope){
+                $scope.studet=[]
+                $scope.generate=function(){
+                    $scope.studet=[]
+                    for(var i=1;i<=$scope.num;i++){
+                        var t={
+                            "Slno":i,
+                            "Name":"Student-"+i,
+                            "CGPA":(Math.random()*10+1).toFixed(2)
+                        }
+                        $scope.studet.push(t)
+                    }
+                }
+            })
+        </script>
+    </head>
+    <body ng-app="myApp4">
+        <div ng-controller="myCntrl">
+            <h2>Student Details</h2>
+            Enter the number of students: <input type="number" ng-model="num" placeholder="#student"><br>
+            <button ng-click="generate()">Generate</button><br>
+            <table border="1" ng-show="studet.length>0">
+                <tr>
+                    <th>Slno</th>
+                    <th>Name</th>
+                    <th>CGPA</th>
+                </tr>
+                <tr ng-repeat="student in studet">
+                    <td>{{student.Slno}}</td>
+                    <td>{{student.Name}}</td>
+                    <td>{{student.CGPA}}</td>
+                </tr>
+            </table><br>
+            The number of student: {{studet.length}}
+        </div>
+    </body>
+</html>
