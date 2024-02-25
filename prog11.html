@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>Convert student details to uppercase</title>
+    <script src="angular.min.js"></script>
+</head>
+
+<body ng-app="Convert2UppApp">
+    <h1>Convert student details to uppercase</h1>
+    <div ng-controller="convertStudDets2upperController">
+        <input type="button" value="Upper" ng-click="convertToUppercase()" />&emsp;
+        <input type="button" value="Lower" ng-click="convertToLowercase()" />&emsp;
+
+        <table border="1">
+            <tr>
+                <th>Sl#</th>
+                <th>Name</th>
+            </tr>
+            <tr ng-repeat="student in studentDetails">
+                <td>{{$index+1}}</td>
+                <td ng-show="to_upper">{{student|uppercase}}</td>
+                <td ng-show="to_lower">{{student|lowercase}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
+
+<script>
+    var filt = angular.module("Convert2UppApp", []);
+    filt.controller("convertStudDets2upperController", function ($scope) {
+        $scope.studentDetails = ['Abhishek', 'Achyuth', 'Aditya', 'Avinash', 'Bhaskar']
+        $scope.to_upper = true
+        $scope.to_lower = false
+
+        $scope.convertToUppercase = function () 
+        {
+            $scope.to_upper = true
+            $scope.to_lower = false
+        }
+
+        $scope.convertToLowercase = function () 
+        {
+            $scope.to_upper = false
+            $scope.to_lower = true
+        }
+    });
+</script>
