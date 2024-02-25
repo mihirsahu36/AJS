@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Factorial & Square</title>
+        <script type="text/javascript" src="angular.min.js"></script>
+        <script>
+            var app=angular.module("myApp3",[])
+            app.controller("myCntrl",function($scope){
+                $scope.num
+                $scope.res
+                $scope.factorial=function(){
+                    if($scope.num<0 || $scope.num.includes(".")){
+                        alert("Inavlid")
+                    }
+                    else if($scope.num==null || $scope.num==undefined || $scope.num==""){
+                        alert("Please enter the number")
+                    }
+                    else if($scope.num==0){
+                        $scope.res=1
+                    }
+                    else{
+                        $scope.fact=1
+                        for(var i=$scope.num;i>=1;i--){
+                            $scope.fact=$scope.fact*i
+                        }
+                        $scope.res=$scope.fact
+                    }
+                }
+
+                $scope.square=function(){
+                    $scope.res=$scope.num*$scope.num
+                }
+            })
+        </script>
+    </head>
+    <body ng-app="myApp3">
+        <div ng-controller="myCntrl">
+            <h2>Factorial and Square Claculator using Angular JS</h2>
+            Enter the number: <input type="text" ng-model="num" id="num"><br><br>
+            <button ng-click="factorial()">Fact</button><br>
+            <button ng-click="square()">Sq</button><br>
+            Result: {{res}}
+        </div>
+    </body>
+</html>
